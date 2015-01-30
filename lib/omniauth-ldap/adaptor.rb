@@ -89,6 +89,9 @@ module OmniAuth
 
       private
       def ensure_method(method)
+          if method.is_a?(Hash)
+            return method
+          end
           method ||= "plain"
           normalized_method = method.to_s.downcase.to_sym
           return METHOD[normalized_method] if METHOD.has_key?(normalized_method)
